@@ -8,9 +8,13 @@ Built using **Python**, **BeautifulSoup**, **Requests**, and **Twilio**. This pr
 - **SMS notification** When a new position is found, an SMS notification is sent via **Twilio**
 - **Terminal-based** Simple CLI interface, may add a GUI. Who knows.
 ---
-##Tech Stack
+##  Tech Stack
 | Component | Description |
-|-------------------------|
-|**Python 3** | Core language |
-|**Beautiful Soup 4** | HTML parsing and scraping |
+|------------|--------------|
+| **Python 3** | Core programming language |
+| **BeautifulSoup4** | HTML parsing and web scraping |
+| **Requests** | HTTP requests for accessing GM’s job listings |
+| **Twilio API** | Sends SMS notifications |
+| **cron / schedule** | Automates periodic checks |
+---
 
