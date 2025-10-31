@@ -11,7 +11,7 @@ Built using **Python**, **BeautifulSoup**, **Requests**, and **Twilio**. This pr
 ## Tech Stack
 | Component | Description |
 |-----------|-------------|
-| **BEautifulSoup4 =** | HTML Parsing |
+| **BeautifulSoup4** | HTML Parsing |
 | **Requests** | HTTP requests and web scraping |
 | **Twilio API** | SMS notification |
 | **cron / schedule** | Automated period checks |
