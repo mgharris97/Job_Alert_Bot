@@ -14,7 +14,14 @@ Built using **Python**, **BeautifulSoup**, **Requests**, and **Twilio**. This pr
 | **BeautifulSoup4** | HTML Parsing |
 | **Requests** | HTTP requests and web scraping |
 | **Twilio API** | SMS notification |
-| **cron / schedule** | Automated period checks |
+| **cron / schedule** | Automated periodic checks |
 ---
 
+
+## Installation 
+- Clone the repo
+```bash
+git clone https://github.com/yourusername/job-alert-bot.git
+cd job-alert-bot
+```
 
