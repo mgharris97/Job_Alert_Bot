@@ -19,4 +19,4 @@ message = client.messages.create(
     to=my_phone
 )
 
-print("✅ Message sent! SID:", message.sid)
+print("Message sent SID:", message.sid)
