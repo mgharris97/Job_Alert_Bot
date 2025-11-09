@@ -27,20 +27,25 @@ with sync_playwright() as p:
     ))
     page = context.new_page()
     page.goto(os.getenv("URL"), timeout=60000)
-    page.wait_for_timeout(10000)  # wait 10 sec for Cloudflare to clear / JS to load
+    page.wait_for_timeout(5000)  # wait 5s
     rendered_site = page.content()
     print(rendered_site[:1000])
     browser.close()
 
     soup = BeautifulSoup(rendered_site, "html.parser")
     jobs=[]
-    for i in soup.select("a.stretched-link", limit=5):
+    for i in soup.select("a.stretched-link", limit=10):
+        #Extract all text in <a> tag removing leading and trailing white spaces
         title = i.get_text(strip=True)
+        ##i.get("href","") returns and appends value of the href attribute from <a> tag to the main url
         link = "https://search-careers.gm.com" + i.get("href", "")
+        #store the job and link in the jobs list 
         jobs.append((title, link))
+    #if jobs is empty...
     if not jobs:
         print ("no job found")
     else:
+        #print job titles and links 
         for title, link in jobs:
             print(title, "->", link)
 
