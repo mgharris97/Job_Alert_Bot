@@ -7,6 +7,7 @@ import os
 from twilio.rest import Client
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
+import json
 
 load_dotenv()
 
@@ -42,12 +43,20 @@ with sync_playwright() as p:
         #store the job and link in the jobs list 
         jobs.append((title, link))
     #if jobs is empty...
-    if not jobs:
-        print ("no job found")
-    else:
+    #if not jobs:
+        #print ("no job found")
+    #else:
         #print job titles and links 
+        #for title, link in jobs:
+            #print(title, "->", link)
+        jobs_dictionary = []
         for title, link in jobs:
-            print(title, "->", link)
+            jobs_dictionary.append({"Title": title, "url": link})
+        
+        seen_jobs_json = json.dumps(jobs_dictionary, indent=2)
+        with open("seen_jobs.json", "w") as f:
+            f.write(seen_jobs_json)
+
 
         
         
