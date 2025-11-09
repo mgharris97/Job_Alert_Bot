@@ -42,21 +42,15 @@ with sync_playwright() as p:
         link = "https://search-careers.gm.com" + i.get("href", "")
         #store the job and link in the jobs list 
         jobs.append((title, link))
-    #if jobs is empty...
-    #if not jobs:
-        #print ("no job found")
-    #else:
-        #print job titles and links 
-        #for title, link in jobs:
-            #print(title, "->", link)
-        jobs_dictionary = []
-        for title, link in jobs:
-            jobs_dictionary.append({"Title": title, "url": link})
-        
-        seen_jobs_json = json.dumps(jobs_dictionary, indent=2)
-        with open("seen_jobs.json", "w") as f:
-            f.write(seen_jobs_json)
 
+    jobs_dictionary = []
+
+    for title, link in jobs:
+        jobs_dictionary.append({"Title": title, "url": link})
+
+    # write JSON file one directory up
+    with open(os.getenv("JSON_ROOT"), "w") as f:
+        json.dump(jobs_dictionary, f, indent=2)
 
         
         
