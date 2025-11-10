@@ -11,6 +11,8 @@ import json
 
 load_dotenv()
 
+#Was having a difficulty configuring a twilio number, so I am using Textbelt API instead.
+'''
 account_sid = os.getenv("TWILIO_SID")
 auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 twilio_phone = os.getenv("TWILIO_PHONE")
@@ -18,7 +20,11 @@ my_phone = os.getenv("MY_PHONE")
 
 #Twilio client initiate
 client = Client(account_sid, auth_token)
+'''
 
+
+
+#using playwright to automate a browser environment
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=False, args=["--disable-blink-features=AutomationControlled"])
     context = browser.new_context(user_agent=(
@@ -51,6 +57,28 @@ with sync_playwright() as p:
     # write JSON file one directory up
     with open(os.getenv("JSON_ROOT"), "w") as f:
         json.dump(jobs_dictionary, f, indent=2)
+
+    #using Tetxtbelt API for notification
+    for job in jobs_dictionary:
+        if os.getenv("JOB_KEYWORDS") in job.get("Title"):
+            textbelt = requests.post(
+                "https://textbelt.com/text",
+                data={
+                    "phone": os.getenv("MY_PHONE"),
+                    "message": (f"Job: {job.get('Title')}\n\nURL: url here"),
+                    "key": os.getenv("TEXTBELT_KEY"),
+            }
+        )
+            print(textbelt.json())
+
+
+            
+ 
+    
+
+            
+
+
 
         
         
